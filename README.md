@@ -1,0 +1,1 @@
+# Growdev MailChimp Image Width #
