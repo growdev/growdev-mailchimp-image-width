@@ -14,8 +14,10 @@
 function growdev_super_awesome_feed_image_magic($content) {
   // Weirdness we need to add to strip the doctype with later.
   $content = '<div>' . $content . '</div>';
-  $doc = new DOMDocument();
-  $doc->LoadHTML($content);
+  libxml_use_internal_errors(true);
+  $doc = new DOMDocument('1.0', 'UTF-8');
+  $doc->loadHTML('<?xml encoding="UTF-8">' . $content);
+
   $images = $doc->getElementsByTagName('img');
   foreach ($images as $image) {
     $image->removeAttribute('height');
